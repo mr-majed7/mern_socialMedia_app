@@ -9,6 +9,8 @@ import path from "path";
 import { fileURLToPath } from "url";
 import helmet from 'helmet';
 import dotenv from 'dotenv';
+import {register} from './controllers/auth.js';
+import authRoutes from './routes/auth.js'
 
 // CONFIGURATIONS
 const __filename = fileURLToPath(import.meta.url);
@@ -34,6 +36,11 @@ const storage = multer.diskStorage({
     }
 });
 const upload = multer({storage: storage});
+
+// ROUTES
+app.post('auth/register',upload.single('image'), register);
+
+app.use('/login','authRoutes')
 
 // DATABASE CONNECTION
 const port = process.env.PORT || 5000;
