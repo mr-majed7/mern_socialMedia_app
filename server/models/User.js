@@ -34,8 +34,8 @@ const userSchema = new mongoose.Schema({
     },
     location: String,
     occupation: String,
-    impression: Number,
-    viewProfile:Number
+    impressions: Number,
+    viewdProfile:Number
 }, {timestamps: true});
 
 export default mongoose.model("User", userSchema);
