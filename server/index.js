@@ -11,6 +11,7 @@ import helmet from 'helmet';
 import dotenv from 'dotenv';
 import {register} from './controllers/auth.js';
 import authRoutes from './routes/auth.js'
+import userRoutes from './routes/users.js'
 
 // CONFIGURATIONS
 const __filename = fileURLToPath(import.meta.url);
@@ -40,7 +41,8 @@ const upload = multer({storage: storage});
 // ROUTES
 app.post('auth/register',upload.single('image'), register);
 
-app.use('/login','authRoutes')
+app.use('/login',authRoutes)
+app.use('/users',userRoutes)
 
 // DATABASE CONNECTION
 const port = process.env.PORT || 5000;
